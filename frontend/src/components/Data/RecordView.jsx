@@ -3,7 +3,6 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import Lottie from 'lottie-react';
 import loadingAnimation from '../../assets/animations/loading.json';
-import './css/RecordView.css';
 
 const Recordview = () => {
   const { id } = useParams();
@@ -28,95 +27,95 @@ const Recordview = () => {
   };
 
   return (
-    <div className='RecordView'>
+    <div className='p-4'>
       {loading ? (
-        <div className="loading-animation">
+        <div className="flex justify-center items-center h-full">
           <Lottie animationData={loadingAnimation} loop autoplay />
         </div>
       ) : error ? (
-        <div>Error: {error}</div>
+        <div className='text-red-500'>{error}</div>
       ) : (
         <div>
-          <h3 className='record-list-header'>RECORD {record.ID} DETAILS:</h3>
-          <table className='record-table'>
+          <h3 className='text-xl font-bold mb-4'>RECORD {record.ID} DETAILS:</h3>
+          <table className='w-full border-collapse'>
             <thead>
               <tr>
-                <th className='record-table-head'>Headers</th>
-                <th className='record-table-head'>Details</th>
+                <th className='border p-2'>Headers</th>
+                <th className='border p-2'>Details</th>
               </tr>
             </thead>
             <tbody>
-              <tr className='record-table-row'>
-                <td className='record-table-data'>ID</td>
-                <td className='record-table-data'>{record.ID}</td>
+              <tr className='border'>
+                <td className='border p-2'>ID</td>
+                <td className='border p-2'>{record.ID}</td>
               </tr>
-              <tr className='record-table-row'>
-                <td className='record-table-data'>Name</td>
-                <td className='record-table-data'>{record.Name}</td>
+              <tr className='border'>
+                <td className='border p-2'>Name</td>
+                <td className='border p-2'>{record.Name}</td>
               </tr>
-              <tr className='record-table-row'>
-                <td className='record-table-data'>Local Body</td>
-                <td className='record-table-data'>{record.Local}</td>
+              <tr className='border'>
+                <td className='border p-2'>Local Body</td>
+                <td className='border p-2'>{record.Local}</td>
               </tr>
-              <tr className='record-table-row'>
-                <td className='record-table-data'>Region</td>
-                <td className='record-table-data'>{record.Reg}</td>
+              <tr className='border'>
+                <td className='border p-2'>Region</td>
+                <td className='border p-2'>{record.Reg}</td>
               </tr>
-              <tr className='record-table-row'>
-                <td className='record-table-data'>Revenue</td>
-                <td className='record-table-data'>{record.Rev}</td>
+              <tr className='border'>
+                <td className='border p-2'>Revenue</td>
+                <td className='border p-2'>{record.Rev}</td>
               </tr>
-              <tr className='record-table-row'>
-                <td className='record-table-data'>Zone Type</td>
-                <td className='record-table-data'>{record.Zone_type}</td>
+              <tr className='border'>
+                <td className='border p-2'>Zone Type</td>
+                <td className='border p-2'>{record.Zone_type}</td>
               </tr>
-              <tr className='record-table-row'>
-                <td className='record-table-data'>Year</td>
-                <td className='record-table-data'>{record.Year}</td>
+              <tr className='border'>
+                <td className='border p-2'>Year</td>
+                <td className='border p-2'>{record.Year}</td>
               </tr>
-              <tr className='record-table-row'>
-                <td className='record-table-data'>Flood risk score</td>
-                <td className='record-table-data'>{record.FloodRiskScore}</td>
+              <tr className='border'>
+                <td className='border p-2'>Flood risk score</td>
+                <td className='border p-2'>{record.FloodRiskScore}</td>
               </tr>
-              <tr className='record-table-row'>
-                <td className='record-table-data'>Flood zone</td>
-                <td className='record-table-data'>{record.FloodZone}</td>
+              <tr className='border'>
+                <td className='border p-2'>Flood zone</td>
+                <td className='border p-2'>{record.FloodZone}</td>
               </tr>
-              <tr className='record-table-row'>
-                <td className='record-table-data'>Elevation</td>
-                <td className='record-table-data'>{record.Elevation}</td>
+              <tr className='border'>
+                <td className='border p-2'>Elevation</td>
+                <td className='border p-2'>{record.Elevation}</td>
               </tr>
-              <tr className='record-table-row'>
-                <td className='record-table-data'>Distance To WaterBodies</td>
-                <td className='record-table-data'>{record.DistanceToWaterBodies}</td>
+              <tr className='border'>
+                <td className='border p-2'>Distance To WaterBodies</td>
+                <td className='border p-2'>{record.DistanceToWaterBodies}</td>
               </tr>
-              <tr className='record-table-row'>
-                <td className='record-table-data'>Historical Flood Events</td>
-                <td className='record-table-data'>{record.HistoricalFloodEvents}</td>
+              <tr className='border'>
+                <td className='border p-2'>Historical Flood Events</td>
+                <td className='border p-2'>{record.HistoricalFloodEvents}</td>
               </tr>
-              <tr className='record-table-row'>
-                <td className='record-table-data'>Flood Protection Measures</td>
-                <td className='record-table-data'>{record.FloodProtectionMeasures}</td>
+              <tr className='border'>
+                <td className='border p-2'>Flood Protection Measures</td>
+                <td className='border p-2'>{record.FloodProtectionMeasures}</td>
               </tr>
-              <tr className='record-table-row'>
-                <td className='record-table-data'>Soil Type</td>
-                <td className='record-table-data'>{record.SoilType}</td>
+              <tr className='border'>
+                <td className='border p-2'>Soil Type</td>
+                <td className='border p-2'>{record.SoilType}</td>
               </tr>
-              <tr className='record-table-row'>
-                <td className='record-table-data'>Vegetation Cover</td>
-                <td className='record-table-data'>{record.VegetationCover}</td>
+              <tr className='border'>
+                <td className='border p-2'>Vegetation Cover</td>
+                <td className='border p-2'>{record.VegetationCover}</td>
               </tr>
-              <tr className='record-table-row'>
-                <td className='record-table-data'>Market Infrastructure</td>
-                <td className='record-table-data'>{record.MarketInfrastructure === 'true' ? 'Yes' : 'No'}</td>
+              <tr className='border'>
+                <td className='border p-2'>Market Infrastructure</td>
+                <td className='border p-2'>{record.MarketInfrastructure === 'true' ? 'Yes' : 'No'}</td>
               </tr>
-              <tr className='record-table-row'>
-                <td className='record-table-data'>UrbanizationLevel</td>
-                <td className='record-table-data'>{record.UrbanizationLevel}</td>
+              <tr className='border'>
+                <td className='border p-2'>UrbanizationLevel</td>
+                <td className='border p-2'>{record.UrbanizationLevel}</td>
               </tr>
-              <tr className='record-table-row'>
-                <td className='record-table-data'>Climate Data</td>
-                <td className='record-table-data'>{record.ClimateData}</td>
+              <tr className='border'>
+                <td className='border p-2'>Climate Data</td>
+                <td className='border p-2'>{record.ClimateData}</td>
               </tr>
             </tbody>
           </table>

@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import axios from "axios";
-import "./css/LandForm.css";
 
 const LandForm = ({ onSubmit }) => {
     const [formData, setFormData] = useState({
@@ -58,13 +57,13 @@ const LandForm = ({ onSubmit }) => {
     };
 
     return (
-        <form className="LandForm" onSubmit={handleSubmit}>
-            <h3 className="landform-header">Land Form Registration</h3>
-            <div className="landform-group">
-                <label className="landform-label" htmlFor="ownerName">Owner's Name:</label>
+        <form className="max-w-lg mx-auto p-4 bg-white shadow-md rounded" onSubmit={handleSubmit}>
+            <h3 className="text-2xl font-bold mb-4">Land Form Registration</h3>
+            <div className="mb-4">
+                <label className="block text-gray-700 font-bold mb-2" htmlFor="ownerName">Owner's Name:</label>
                 <input
                     required
-                    className='landform-control'
+                    className='w-full px-3 py-2 border rounded'
                     type="text"
                     id="ownerName"
                     name="ownerName"
@@ -72,11 +71,11 @@ const LandForm = ({ onSubmit }) => {
                     onChange={handleChange}
                 />
             </div>
-            <div className="landform-group">
-                <label className="landform-label" htmlFor="phoneNumber">Phone Number:</label>
+            <div className="mb-4">
+                <label className="block text-gray-700 font-bold mb-2" htmlFor="phoneNumber">Phone Number:</label>
                 <input
                     required
-                    className='landform-control'
+                    className='w-full px-3 py-2 border rounded'
                     type="text"
                     id="phoneNumber"
                     name="phoneNumber"
@@ -84,11 +83,11 @@ const LandForm = ({ onSubmit }) => {
                     onChange={handleChange}
                 />
             </div>
-            <div className="landform-group">
-                <label className="landform-label" htmlFor="contact">Contact Person:</label>
+            <div className="mb-4">
+                <label className="block text-gray-700 font-bold mb-2" htmlFor="contact">Contact Person:</label>
                 <input
                     required
-                    className='landform-control'
+                    className='w-full px-3 py-2 border rounded'
                     type="text"
                     id="contact"
                     name="contact"
@@ -96,11 +95,11 @@ const LandForm = ({ onSubmit }) => {
                     onChange={handleChange}
                 />
             </div>
-            <div className="landform-group">
-                <label className="landform-label" htmlFor="address">Address:</label>
+            <div className="mb-4">
+                <label className="block text-gray-700 font-bold mb-2" htmlFor="address">Address:</label>
                 <input
                     required
-                    className='landform-control'
+                    className='w-full px-3 py-2 border rounded'
                     type="text"
                     id="address"
                     name="address"
@@ -108,11 +107,11 @@ const LandForm = ({ onSubmit }) => {
                     onChange={handleChange}
                 />
             </div>
-            <div className="landform-group">
-                <label className="landform-label" htmlFor="landSize">Land Size:</label>
+            <div className="mb-4">
+                <label className="block text-gray-700 font-bold mb-2" htmlFor="landSize">Land Size:</label>
                 <input
                     required
-                    className='landform-control'
+                    className='w-full px-3 py-2 border rounded'
                     type="text"
                     id="landSize"
                     name="landSize"
@@ -120,11 +119,11 @@ const LandForm = ({ onSubmit }) => {
                     onChange={handleChange}
                 />
             </div>
-            <div className="landform-group">
-                <label className="landform-label" htmlFor="soilType">Soil Type:</label>
+            <div className="mb-4">
+                <label className="block text-gray-700 font-bold mb-2" htmlFor="soilType">Soil Type:</label>
                 <input
                     required
-                    className='landform-control'
+                    className='w-full px-3 py-2 border rounded'
                     type="text"
                     id="soilType"
                     name="soilType"
@@ -132,11 +131,11 @@ const LandForm = ({ onSubmit }) => {
                     onChange={handleChange}
                 />
             </div>
-            <div className="landform-group">
-                <label className="landform-label" htmlFor="cropCultivated">Crop Cultivated:</label>
+            <div className="mb-4">
+                <label className="block text-gray-700 font-bold mb-2" htmlFor="cropCultivated">Crop Cultivated:</label>
                 <input
                     required
-                    className='landform-control'
+                    className='w-full px-3 py-2 border rounded'
                     type="text"
                     id="cropCultivated"
                     name="cropCultivated"
@@ -144,11 +143,11 @@ const LandForm = ({ onSubmit }) => {
                     onChange={handleChange}
                 />
             </div>
-            <div className="landform-group">
-                <label className="landform-label" htmlFor="agriculturalLoan">Agricultural Loan (₹):</label>
+            <div className="mb-4">
+                <label className="block text-gray-700 font-bold mb-2" htmlFor="agriculturalLoan">Agricultural Loan (₹):</label>
                 <input
                     required
-                    className='landform-control'
+                    className='w-full px-3 py-2 border rounded'
                     type="text"
                     id="agriculturalLoan"
                     name="agriculturalLoan"
@@ -156,11 +155,11 @@ const LandForm = ({ onSubmit }) => {
                     onChange={handleChange}
                 />
             </div>
-            <div className="landform-group">
-                <label className="landform-label" htmlFor="latitude">Latitude:</label>
+            <div className="mb-4">
+                <label className="block text-gray-700 font-bold mb-2" htmlFor="latitude">Latitude:</label>
                 <input
                     required
-                    className='landform-control'
+                    className='w-full px-3 py-2 border rounded'
                     type="text"
                     id="latitude"
                     name="latitude"
@@ -168,11 +167,11 @@ const LandForm = ({ onSubmit }) => {
                     onChange={handleChange}
                 />
             </div>
-            <div className="landform-group">
-                <label className="landform-label" htmlFor="longitude">Longitude:</label>
+            <div className="mb-4">
+                <label className="block text-gray-700 font-bold mb-2" htmlFor="longitude">Longitude:</label>
                 <input
                     required
-                    className='landform-control'
+                    className='w-full px-3 py-2 border rounded'
                     type="text"
                     id="longitude"
                     name="longitude"
@@ -180,11 +179,11 @@ const LandForm = ({ onSubmit }) => {
                     onChange={handleChange}
                 />
             </div>
-            <div className="landform-group">
-                <label className="landform-label" htmlFor="cropPrice">Price of Cultivated Crop:</label>
+            <div className="mb-4">
+                <label className="block text-gray-700 font-bold mb-2" htmlFor="cropPrice">Price of Cultivated Crop:</label>
                 <input
                     required
-                    className='landform-control'
+                    className='w-full px-3 py-2 border rounded'
                     type="text"
                     id="cropPrice"
                     name="cropPrice"
@@ -192,12 +191,12 @@ const LandForm = ({ onSubmit }) => {
                     onChange={handleChange}
                 />
             </div>
-            <div className="landform-submit-container">
-                <button className={`landform-submit-btn ${isSubmitting ? 'loading' : ''}`} type="submit" disabled={isSubmitting}>
+            <div className="flex justify-center">
+                <button className={`px-4 py-2 bg-blue-500 text-white rounded ${isSubmitting ? 'opacity-50 cursor-not-allowed' : ''}`} type="submit" disabled={isSubmitting}>
                     {isSubmitting ? (<div className="loader">Loading...</div>) : 'Submit'}
                 </button>
             </div>
-            {error && <div className="landform-error-msg">{error}</div>}
+            {error && <div className="text-red-500 mt-4">{error}</div>}
         </form>
     );
 };

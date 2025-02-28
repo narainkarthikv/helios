@@ -3,7 +3,6 @@ import axios from 'axios';
 import Lottie from 'lottie-react';
 import loadingAnimation from '../../assets/animations/loading.json';
 import { FaTrash } from 'react-icons/fa';
-import './css/LandView.css';
 
 const Landview = () => {
     const [landData, setLandData] = useState([]);
@@ -39,84 +38,82 @@ const Landview = () => {
     };
 
     return (
-        <div className='LandView'>
+        <div className='p-4'>
             {loading ? (
-                <div className="loading-animation">
+                <div className="flex justify-center items-center h-screen">
                     <Lottie animationData={loadingAnimation} loop autoplay />
                 </div>
             ) : error ? (
-                <div>Error: {error}</div>
+                <div className="text-red-500">Error: {error}</div>
             ) : (
                 <div>
-                    <h1 className='landview-header'>Land Information</h1>
+                    <h1 className='text-3xl font-bold mb-4'>Land Information</h1>
                     {landData.map((land, index) => (
-                    <div key={index} className="land-info">
-                    <div className="table-container">
-                        <div className="left-table">
-                            <h2 className='landview-table-header'>Land {index + 1}</h2>
-                            <table className='landview-table'>
-                                <tbody>
-                                    <tr className='landview-table-row'>
-                                        <td className='landview-table-data'>Owner's Name</td>
-                                        <td className='landview-table-data'>{land.ownerName}</td>
-                                    </tr>
-                                    <tr className='landview-table-row'>
-                                        <td className='landview-table-data'>Contact Person</td>
-                                        <td className='landview-table-data'>{land.contact}</td>
-                                    </tr>
-                                    <tr className='landview-table-row'>
-                                        <td className='landview-table-data'>Phone Number</td>
-                                        <td className='landview-table-data'>{land.phoneNumber}</td>
-                                    </tr>
-                                    <tr className='landview-table-row'>
-                                        <td className='landview-table-data'>Address</td>
-                                        <td className='landview-table-data'>{land.address}</td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                    <div key={index} className="mb-8 p-4 bg-white shadow-md rounded">
+                        <div className="flex justify-between">
+                            <div className="w-1/2 pr-4">
+                                <h2 className='text-xl font-bold mb-2'>Land {index + 1}</h2>
+                                <table className='w-full'>
+                                    <tbody>
+                                        <tr className='border-b'>
+                                            <td className='py-2'>Owner's Name</td>
+                                            <td className='py-2'>{land.ownerName}</td>
+                                        </tr>
+                                        <tr className='border-b'>
+                                            <td className='py-2'>Contact Person</td>
+                                            <td className='py-2'>{land.contact}</td>
+                                        </tr>
+                                        <tr className='border-b'>
+                                            <td className='py-2'>Phone Number</td>
+                                            <td className='py-2'>{land.phoneNumber}</td>
+                                        </tr>
+                                        <tr className='border-b'>
+                                            <td className='py-2'>Address</td>
+                                            <td className='py-2'>{land.address}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div className="w-1/2 pl-4">
+                                <h2 className='text-xl font-bold mb-2'>Land Details</h2>
+                                <table className='w-full'>
+                                    <tbody>
+                                        <tr className='border-b'>
+                                            <td className='py-2'>Land Size</td>
+                                            <td className='py-2'>{land.landSize}</td>
+                                        </tr>
+                                        <tr className='border-b'>
+                                            <td className='py-2'>Soil Type</td>
+                                            <td className='py-2'>{land.soilType}</td>
+                                        </tr>
+                                        <tr className='border-b'>
+                                            <td className='py-2'>Crop Cultivated</td>
+                                            <td className='py-2'>{land.cropCultivated}</td>
+                                        </tr>
+                                        <tr className='border-b'>
+                                            <td className='py-2'>Agricultural Loan (₹)</td>
+                                            <td className='py-2'>{land.agriculturalLoan}</td>
+                                        </tr>
+                                        <tr className='border-b'>
+                                            <td className='py-2'>Latitude</td>
+                                            <td className='py-2'>{land.latitude}</td>
+                                        </tr>
+                                        <tr className='border-b'>
+                                            <td className='py-2'>Longitude</td>
+                                            <td className='py-2'>{land.longitude}</td>
+                                        </tr>
+                                        <tr className='border-b'>
+                                            <td className='py-2'>Price of Cultivated Crop:</td>
+                                            <td className='py-2'>{land.cropPrice}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
-                        <div className="right-table">
-                            <h2 className='landview-table-header'>Land Details</h2>
-                            <table>
-                                <tbody>
-                                    <tr className='landview-table-row'>
-                                        <td className='landview-table-data'>Land Size</td>
-                                        <td className='landview-table-data'>{land.landSize}</td>
-                                    </tr>
-                                    <tr className='landview-table-row'>
-                                        <td className='landview-table-data'>Soil Type</td>
-                                        <td className='landview-table-data'>{land.soilType}</td>
-                                    </tr>
-                                    <tr className='landview-table-row'>
-                                        <td className='landview-table-data'>Crop Cultivated</td>
-                                        <td className='landview-table-data'>{land.cropCultivated}</td>
-                                    </tr>
-                                    <tr className='landview-table-row'>
-                                        <td className='landview-table-data'>Agricultural Loan (₹)</td>
-                                        <td className='landview-table-data'>{land.agriculturalLoan}</td>
-                                    </tr>
-                                    <tr className='landview-table-row'>
-                                        <td className='landview-table-data'>Latitude</td>
-                                        <td className='landview-table-data'>{land.latitude}</td>
-                                    </tr>
-                                    <tr className='landview-table-row'>
-                                        <td className='landview-table-data'>Longitude</td>
-                                        <td className='landview-table-data'>{land.longitude}</td>
-                                    </tr>
-                                    <tr className='landview-table-row'>
-                                        <td className='landview-table-data'>Price of Cultivated Crop:</td>
-                                        <td className='landview-table-data'>{land.cropPrice}</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            
+                        <div className="flex justify-end mt-4">
+                            <button className="text-red-500" onClick={() => handleDelete(land._id)}><FaTrash/></button>
                         </div>
                     </div>
-                    <div className="landview-trash-btn">
-                                <button onClick={() => handleDelete(land._id)}><FaTrash/></button>
-                    </div>
-                </div>
-                                   
                     ))}
                 </div>
             )}

@@ -51,86 +51,90 @@ const LargeSpace = () => {
   }), []);
 
   return (
-    <div className="dashboard-card">
+    <div className="p-4 bg-white rounded-lg shadow-md">
       {loading ? (
-        <div className="loading-animation" ref={loadingRef}>
+        <div className="flex justify-center items-center h-64" ref={loadingRef}>
           {/* Lottie animation */}
           <Lottie animationData={loadingAnimation} loop autoplay />
         </div>
       ) : (
         <>
           {revenueError || floodRiskError || environmentalSafetyError ? (
-            <div className="error-message">
+            <div className="text-red-500 text-center">
               {revenueError || floodRiskError || environmentalSafetyError}
             </div>
           ) : (
             <Slider className='stats-slide' {...sliderSettings}>
-              <div className="slide-content revenue-slide">
-                <h2 className='stats-header'>Top 5 Revenue Generation Zones</h2>
-                <table className='stats-table-revenue'>
+              <div className="p-4">
+                <h2 className='text-xl font-bold mb-4'>Top 5 Revenue Generation Zones</h2>
+                <table className='min-w-full bg-white'>
                     <thead>
-                      <tr className='stats-table-row-header'>
-                        <th className='stats-table-head'>Name</th>
-                        <th className='stats-table-head'>Revenue</th>
-                        <th className='stats-table-head'>Commercial/Government/Park</th>
-                        <th className='stats-table-head'>Total Area</th>
-                        <th className='stats-table-head'>Accessibility score</th>
+                      <tr className='bg-gray-200'>
+                        <th className='py-2 px-4'>Name</th>
+                        <th className='py-2 px-4'>Revenue</th>
+                        <th className='py-2 px-4'>Commercial/Government/Park</th>
+                        <th className='py-2 px-4'>Total Area</th>
+                        <th className='py-2 px-4'>Accessibility score</th>
                       </tr>
                     </thead>
-                    <tbody className='stats-table-body'>
+                    <tbody>
                     {topRevenueData.map((area, index) => (
-                      <tr className='stats-table-row' key={index}>
-                        <td className='stats-table-data'>{area.Name}</td>
-                        <td className='stats-table-data'>{area.Rev}</td>
-                        <td className='stats-table-data'>{area.Zone_type}</td>
-                        <td className='stats-table-data'>{area.Size}</td>
-                        <td className='stats-table-data'>{area.Acc_Score}</td>
+                      <tr className='border-b' key={index}>
+                        <td className='py-2 px-4'>{area.Name}</td>
+                        <td className='py-2 px-4'>{area.Rev}</td>
+                        <td className='py-2 px-4'>{area.Zone_type}</td>
+                        <td className='py-2 px-4'>{area.Size}</td>
+                        <td className='py-2 px-4'>{area.Acc_Score}</td>
                       </tr>
                     ))}
                   </tbody>
                 </table>
               </div>
-              <div className="slide-content flood-risk-slide">
-                <h2 className='stats-header'>Top 5 Flood Risk Zones</h2>
-                <table className='stats-table-flood'>
-                  <tbody>
-                    <tr className='stats-table-row-header'>
-                      <th className='stats-table-head'>Name</th>
-                      <th className='stats-table-head'>Flood Risk Score</th>
-                      <th className='stats-table-head'>Past Flood Events</th>
-                      <th className='stats-table-head'>Flood Protection Measures</th>
-                      <th className='stats-table-head'>Flood Zone</th>
+              <div className="p-4">
+                <h2 className='text-xl font-bold mb-4'>Top 5 Flood Risk Zones</h2>
+                <table className='min-w-full bg-white'>
+                  <thead>
+                    <tr className='bg-gray-200'>
+                      <th className='py-2 px-4'>Name</th>
+                      <th className='py-2 px-4'>Flood Risk Score</th>
+                      <th className='py-2 px-4'>Past Flood Events</th>
+                      <th className='py-2 px-4'>Flood Protection Measures</th>
+                      <th className='py-2 px-4'>Flood Zone</th>
                     </tr>
+                  </thead>
+                  <tbody>
                     {floodRiskScores.map((area, index) => (
-                      <tr className='stats-table-row' key={index}>
-                        <td className='stats-table-data'>{area.Name}</td>
-                        <td className='stats-table-data'>{area.FloodRiskScore}</td>
-                        <td className='stats-table-data'>{area.HistoricalFloodEvents}</td>
-                        <td className='stats-table-data'>{area.FloodProtectionMeasures}</td>
-                        <td className='stats-table-data'>{area.FloodZone}</td>
+                      <tr className='border-b' key={index}>
+                        <td className='py-2 px-4'>{area.Name}</td>
+                        <td className='py-2 px-4'>{area.FloodRiskScore}</td>
+                        <td className='py-2 px-4'>{area.HistoricalFloodEvents}</td>
+                        <td className='py-2 px-4'>{area.FloodProtectionMeasures}</td>
+                        <td className='py-2 px-4'>{area.FloodZone}</td>
                       </tr>
                     ))}
                   </tbody>
                 </table>
               </div>
-              <div className="slide-content environmental-safety-slide">
-                <h2 className='stats-header'>Top 5 Environmental Safety Zones</h2>
-                <table className='stats-table-env'>
-                  <tbody>
-                    <tr className='stats-table-row-header'>
-                      <th className='stats-table-head'>Name</th>
-                      <th className='stats-table-head'>Air Quality Index (AQI)</th>
-                      <th className='stats-table-head'>Market Infrastructure</th>
-                      <th className='stats-table-head'>Environmental Features</th>
-                      <th className='stats-table-head'>Vegetation Cover</th>
+              <div className="p-4">
+                <h2 className='text-xl font-bold mb-4'>Top 5 Environmental Safety Zones</h2>
+                <table className='min-w-full bg-white'>
+                  <thead>
+                    <tr className='bg-gray-200'>
+                      <th className='py-2 px-4'>Name</th>
+                      <th className='py-2 px-4'>Air Quality Index (AQI)</th>
+                      <th className='py-2 px-4'>Market Infrastructure</th>
+                      <th className='py-2 px-4'>Environmental Features</th>
+                      <th className='py-2 px-4'>Vegetation Cover</th>
                     </tr>
+                  </thead>
+                  <tbody>
                     {environmentalSafetyData.map((area, index) => (
-                      <tr className='stats-table-row' key={index}>
-                        <td className='stats-table-data'>{area.Name}</td>
-                        <td className='stats-table-data'>{area.AQI}</td>
-                        <td className='stats-table-data'>{area.MarketInfrastructure ? 'Yes' : 'No'}</td>
-                        <td className='stats-table-data'>{area.EnvironmentalFeatures}</td>
-                        <td className='stats-table-data'>{area.VegetationCover}</td>
+                      <tr className='border-b' key={index}>
+                        <td className='py-2 px-4'>{area.Name}</td>
+                        <td className='py-2 px-4'>{area.AQI}</td>
+                        <td className='py-2 px-4'>{area.MarketInfrastructure ? 'Yes' : 'No'}</td>
+                        <td className='py-2 px-4'>{area.EnvironmentalFeatures}</td>
+                        <td className='py-2 px-4'>{area.VegetationCover}</td>
                       </tr>
                     ))}
                   </tbody>

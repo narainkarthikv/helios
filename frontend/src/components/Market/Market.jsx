@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import { FaArrowRight } from 'react-icons/fa';
 import Lottie from 'lottie-react';
 import loadingAnimation from '../../assets/animations/loading.json';
-import './css/Market.css';
 
 const Market = () => {
   const [marketPlaces, setMarketPlaces] = useState([]);
@@ -53,32 +52,32 @@ const Market = () => {
   return (
     <div className='Market'>
       {loading ? (
-        <div className="loading-animation">
+        <div className="flex justify-center items-center h-screen">
           <Lottie animationData={loadingAnimation} loop autoplay />
         </div>
       ) : error ? (
-        <div>Error: {error}</div>
+        <div className="text-red-500 text-center">{error}</div>
       ) : (
         <div>
-          <div className='Search-Bar'>
+          <div className='flex justify-center mb-4'>
               <input 
                 type="text" 
                 placeholder="🔍 Search by Name or Region" 
                 value={searchQuery} 
                 onChange={handleSearchChange} 
-                className="search-input" 
+                className="border border-gray-300 rounded-lg p-2 w-full max-w-md" 
               />
           </div>
-          <div className='Market-container'>
+          <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
               {filteredPlaces.length === 0 ? (
-                <h3 className='Market-filtered-msg'>No matching places found.</h3>
+                <h3 className='text-center col-span-full'>No matching places found.</h3>
               ) : (
                 filteredPlaces.map(place => (
-                  <div className='Market-list-box' key={place.ID}>
-                    <h3 className='Market-list-item-content'>{place.Name}</h3>
-                    <h3 className='Market-list-item-content'>{place.Reg}</h3>
-                    <Link className='Market-list-item-content' to={`/MarketView/${place.ID}`}>
-                      <FaArrowRight className='arrow-icon' />
+                  <div className='border p-4 rounded-lg shadow-md' key={place.ID}>
+                    <h3 className='text-lg font-semibold'>{place.Name}</h3>
+                    <h3 className='text-gray-600'>{place.Reg}</h3>
+                    <Link className='text-blue-500 hover:underline' to={`/MarketView/${place.ID}`}>
+                      <FaArrowRight className='inline-block ml-2' />
                     </Link>
                   </div>
                 ))

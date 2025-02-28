@@ -2,9 +2,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { FaArrowRight, FaSort } from 'react-icons/fa6';
 import { Link } from 'react-router-dom';
-import './css/Data.css';
 
-const TableView = () => {
+const DataView = () => {
   const [busStations, setBusStations] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [sortType, setSortType] = useState('');
@@ -45,15 +44,15 @@ const TableView = () => {
   });
 
   return (
-    <div className='Data'>
-      <div className='search-container'>
+    <div className='p-4'>
+      <div className='flex items-center mb-4'>
         <input
-          className='search-bar'
+          className='flex-grow p-2 border border-gray-300 rounded'
           placeholder="🔍 Search By Name, Region, Zone Type"
           value={searchTerm}
           onChange={handleSearch}
         />
-        <select className='sort-btn' value={sortType} onChange={handleSort}>
+        <select className='ml-2 p-2 border border-gray-300 rounded' value={sortType} onChange={handleSort}>
           <option value="ID">ID</option>
           <option value="Name">Name</option>
           <option value="Reg">Region</option>
@@ -61,34 +60,34 @@ const TableView = () => {
           <option value="Year">Year</option>
           <option value="Zone_type">Zones</option>
         </select>
-        <h3><FaSort className='sort-icon'/></h3>
+        <h3 className='ml-2'><FaSort className='text-xl'/></h3>
       </div>
-      <table className='tableview-container'>
+      <table className='w-full border-collapse'>
         <thead>
           <tr>
-            <th className='tableview-head'>ID</th>
-            <th className='tableview-head'>Name</th>
-            <th className='tableview-head'>Location Body</th>
-            <th className='tableview-head'>Region</th>
-            <th className='tableview-head'>Revenue</th>
-            <th className='tableview-head'>Zone Type</th>
-            <th className='tableview-head'>Year</th>
-            <th className='tableview-head'>More Details</th>
+            <th className='border p-2'>ID</th>
+            <th className='border p-2'>Name</th>
+            <th className='border p-2'>Location Body</th>
+            <th className='border p-2'>Region</th>
+            <th className='border p-2'>Revenue</th>
+            <th className='border p-2'>Zone Type</th>
+            <th className='border p-2'>Year</th>
+            <th className='border p-2'>More Details</th>
           </tr>
         </thead>
         <tbody>
           {sortedBusStations.map((station) => (
-            <tr className='tableview-row' key={station.ID}>
-              <td className='tableview-row-data'>{station.ID}</td>
-              <td className='tableview-row-data'>{station.Name}</td>
-              <td className='tableview-row-data'>{station.Local}</td>
-              <td className='tableview-row-data'>{station.Reg}</td>
-              <td className='tableview-row-data'>{station.Rev}</td>
-              <td className='tableview-row-data'>{station.Zone_type}</td>
-              <td className='tableview-row-data'>{station.Year}</td>
-              <td className='tableview-row-data'>
-                <Link className='table-link' to={`/RecordView/${station.ID}`}>
-                  <FaArrowRight className='table-arrow-icon'/>
+            <tr className='border' key={station.ID}>
+              <td className='border p-2'>{station.ID}</td>
+              <td className='border p-2'>{station.Name}</td>
+              <td className='border p-2'>{station.Local}</td>
+              <td className='border p-2'>{station.Reg}</td>
+              <td className='border p-2'>{station.Rev}</td>
+              <td className='border p-2'>{station.Zone_type}</td>
+              <td className='border p-2'>{station.Year}</td>
+              <td className='border p-2'>
+                <Link className='text-blue-500' to={`/RecordView/${station.ID}`}>
+                  <FaArrowRight className='text-xl'/>
                 </Link>
               </td>
             </tr>
@@ -99,4 +98,4 @@ const TableView = () => {
   );
 };
 
-export default TableView;
+export default DataView;

@@ -5,13 +5,12 @@ import React, { useState, useEffect } from 'react';
 import { Icon } from "leaflet";
 import Lottie from 'lottie-react';
 import loadingAnimation from '../../assets/animations/loading.json';
-import './css/MapLinking.css';
 
 import commercialPlaceholder from '../../assets/images/commercial-placeholder.png';
 import governmentPlaceholder from '../../assets/images/government-placeholder.png';
 import parkPlaceholder from '../../assets/images/park-placeholder.png';
 
-const Maplinking = () => {
+const MapLinking = () => {
   const [geocode, setGeocode] = useState([]);
   const [zoneTypes, setZoneTypes] = useState([]);
   const [selectedZone, setSelectedZone] = useState('');
@@ -78,16 +77,16 @@ const Maplinking = () => {
   };
 
   return (
-    <div className="map-container">
+    <div className="">
       {loading ? (
-        <div className="loading-animation">
+        <div className="flex items-center justify-center h-full">
           <Lottie animationData={loadingAnimation} loop autoplay />
         </div>
       ) : (
         <>
-          <div className="filter-container">
-            <label className="filter-label" htmlFor="zoneFilter">Filter by Zone Type: </label>
-            <select className="filter-control" id="zoneFilter" onChange={handleFilterChange} value={selectedZone}>
+          <div className="absolute top-4 right-4 bg-white p-4 rounded shadow-md z-10">
+            <label className="block text-sm font-medium text-gray-700" htmlFor="zoneFilter">Filter by Zone Type: </label>
+            <select className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md" id="zoneFilter" onChange={handleFilterChange} value={selectedZone}>
               <option value="">All ({geocode.length})</option>
               {zoneTypes.includes('Government') && (
                 <option value="Government">
@@ -106,7 +105,7 @@ const Maplinking = () => {
               )}
             </select>
           </div>
-          <MapContainer center={[13.0505, 80.2241]} zoom={12}>
+          <MapContainer className="w-full h-full">
             <TileLayer
               attribution="glis"
               url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -114,32 +113,32 @@ const Maplinking = () => {
             {filteredGeocode.map((geo, index) => (
               <Marker key={index} position={[geo.lat, geo.long]} icon={fetchIcon(geo.Zone_type)}>
                 <Popup>
-                  <div className="popup-container">
-                    <h4>ID: {geo.ID}</h4>
-                    <h4>Name: {geo.Name}</h4>
-                    <h4>Local: {geo.Local}</h4>
-                    <h4>Zone Type: {geo.Zone_type}</h4>
-                    <h4>Market Infrastructure: {geo.MarketInfrastructure === 'true' ? 'Yes' : 'No'}</h4>
-                    <h4>Year: {geo.Year}</h4>
-                    <h4>Latitude: {geo.lat}</h4>
-                    <h4>Longitude: {geo.long}</h4>
+                  <div className="p-2">
+                    <h4 className="font-bold">ID: {geo.ID}</h4>
+                    <h4 className="font-bold">Name: {geo.Name}</h4>
+                    <h4 className="font-bold">Local: {geo.Local}</h4>
+                    <h4 className="font-bold">Zone Type: {geo.Zone_type}</h4>
+                    <h4 className="font-bold">Market Infrastructure: {geo.MarketInfrastructure === 'true' ? 'Yes' : 'No'}</h4>
+                    <h4 className="font-bold">Year: {geo.Year}</h4>
+                    <h4 className="font-bold">Latitude: {geo.lat}</h4>
+                    <h4 className="font-bold">Longitude: {geo.long}</h4>
                   </div>
                 </Popup>
               </Marker>
             ))}
           </MapContainer>
-          <div className="legend-container">
-            <div className="legend-item">
-              <img className="legend-item-img" src={governmentPlaceholder} alt="Government" />
-              <span className="legend-item-span">Government</span>
+          <div className="absolute bottom-4 left-4 bg-white p-4 rounded shadow-md z-10">
+            <div className="flex items-center mb-2">
+              <img className="w-6 h-6 mr-2" src={governmentPlaceholder} alt="Government" />
+              <span className="text-sm">Government</span>
             </div>
-            <div className="legend-item">
-              <img className="legend-item-img" src={commercialPlaceholder} alt="Commercial" />
-              <span className="legend-item-span">Commercial</span>
+            <div className="flex items-center mb-2">
+              <img className="w-6 h-6 mr-2" src={commercialPlaceholder} alt="Commercial" />
+              <span className="text-sm">Commercial</span>
             </div>
-            <div className="legend-item">
-              <img className="legend-item-img" src={parkPlaceholder} alt="Park" />
-              <span className="legend-item-span">Park</span>
+            <div className="flex items-center">
+              <img className="w-6 h-6 mr-2" src={parkPlaceholder} alt="Park" />
+              <span className="text-sm">Park</span>
             </div>
           </div>
         </>
@@ -148,4 +147,4 @@ const Maplinking = () => {
   );
 }
 
-export default Maplinking;
+export default MapLinking;

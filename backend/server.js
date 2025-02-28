@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const bodyParser = require('body-parser');
+require('dotenv').config();
 
 const dataRoutes = require('./Routes/Inforoutes.js');
 const topRevenueRoutes = require('./Routes/toprevRoutes.js');
@@ -16,14 +17,21 @@ const port = 4000;
 app.use(bodyParser.json());
 app.use(cors());
 
-mongoose.connect('mongodb+srv://ragunathans0808:qwerty123@glis.gve5t.mongodb.net/test', {
+// Middleware
+app.use(cors());
+app.use(express.json());
+
+// Database connection
+const uri = process.env.ATLAS_URI;
+
+mongoose.connect(uri, {
   useUnifiedTopology: true,
   useNewUrlParser: true,
 })
-
 .then(() => console.log('Connected to MongoDB'))
 .catch(error => console.error('Error connecting to MongoDB:', error));
 
+// Graceful shutdown
 process.on('SIGINT', () => {
   mongoose.connection.close(() => {
     console.log('MongoDB connection closed');

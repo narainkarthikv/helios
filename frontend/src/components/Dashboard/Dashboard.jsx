@@ -6,19 +6,18 @@ import Bar from'./Graphs/BarChart';
 import PieChart from './Graphs/PieChart';
 import Treemap from './Graphs/TreeMap';
 import Sample from './Graphs/sample';
-import './css/Dashboard.css'; 
 
 const Dashboard = () => {
   return (
-    <div className="dashboard">
-      <div className="graph-container">
-        <LargeSpace title="Highest Values" className='graph-card' /> 
-        {/* <Widgets title="Population density vs foot tracffic" className='graph-card' /> */}
-        <Heatmap title="plot" className='graph-card' />
-        <Bar title="Flood Risk Scores" className='graph-card'/>
-        <PieChart title="plot" className='graph-card'/>
-        <Treemap title="plot" className='graph-card'/>
-        <Sample title="plot" className='graph-card'/>
+    <div className="p-4 bg-gray-100 min-h-screen">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-10">
+        <LargeSpace title="Highest Values" className='p-4 bg-white rounded-lg shadow-md' /> 
+        {/* <Widgets title="Population density vs foot tracffic" className='p-4 bg-white rounded-lg shadow-md' /> */}
+        <Heatmap title="plot" className='p-4 bg-white rounded-lg shadow-md' />
+        <Bar title="Flood Risk Scores" className='p-4 bg-white rounded-lg shadow-md'/>
+        <PieChart title="plot" className='p-4 bg-white rounded-lg shadow-md'/>
+        <Treemap title="plot" className='p-4 bg-white rounded-lg shadow-md'/>
+        <Sample title="plot" className='p-4 bg-white rounded-lg shadow-md'/>
       </div>
     </div>
   );

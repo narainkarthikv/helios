@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Navbar from './components/common/Navbar.jsx';
 import Dashboard from './components/dashboard/Dashboard.jsx';
-import TableView from './components/data/Data.jsx';
+import DataView from './components/data/DataView.jsx';
 import Recordview from './components/data/RecordView.jsx';
 import Login from './pages/Login.jsx';
 import SignUp from './pages/SignUp.jsx';
@@ -31,7 +31,7 @@ function AppRoutes({ isLoggedIn, setIsLoggedIn }) {
     <Routes>
       <Route path='/login' element={isLoggedIn ? <Dashboard /> : <Login isAuthenticated={isLoggedIn} setIsAuthenticated={setIsLoggedIn} />} />
       <Route exact path='/' element={isLoggedIn ? <Dashboard /> : <Navigate to="/login" />} />
-      <Route path='/Data' element={isLoggedIn ? <TableView /> : <Navigate to="/login" />} />
+      <Route path='/Data' element={isLoggedIn ? <DataView /> : <Navigate to="/login" />} />
       <Route path='/Market' element={isLoggedIn ? <Market /> : <Navigate to="/login" />} />
       <Route path='/MarketView/:id' element={isLoggedIn ? <MarketView /> : <Navigate to="/login" />} />
       <Route path='/Map' element={isLoggedIn ? <MapLinking /> : <Navigate to="/login" />} />

@@ -57,14 +57,14 @@ const ScatterPlot = ({ title }) => {
   }, []);
 
   return (
-    <div className="chart-container">
-      <h2>{title}</h2>
+    <div className="p-4 bg-white rounded-lg shadow-md">
+      <h2 className="text-xl font-bold mb-4">{title}</h2>
       {loading ? (
-        <div className="loading-animation">
+        <div className="flex justify-center items-center h-64">
           <Lottie animationData={loadingAnimation} loop autoplay />
         </div>
       ) : error ? (
-        <div className="error-message">{error}</div>
+        <div className="text-red-500 text-center">{error}</div>
       ) : (
         <Chart options={options} series={[{ data: scatterData }]} type="scatter" height={400} />
       )}
