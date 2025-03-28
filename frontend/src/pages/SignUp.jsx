@@ -3,6 +3,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import axios from 'axios';
 
 const SignUp = () => {
+  const backendURL = import.meta.env.VITE_API_URL || 'http://localhost:4000';
   const [formState, setFormState] = useState({
     Usr_name: '',
     Usr_email: '',
@@ -16,7 +17,8 @@ const SignUp = () => {
   const navigate = useNavigate();
 
   const handleChange = (e) => {
-    setFormState({ ...formState, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+    setFormState((prevState) => ({ ...prevState, [name]: value }));
   };
 
   const handleSubmit = async (e) => {
@@ -35,11 +37,9 @@ const SignUp = () => {
     const { confirmPassword, ...formData } = formState;
 
     try {
-      const response = await axios.post('https://glis-yqvt.onrender.com/api/user/add', formData);
-
+      const response = await axios.post(`${backendURL}/api/user/add`, formData);
       console.log('Response from server:', response.data);
-      navigate('/login'); 
-
+      navigate('/login');
     } catch (error) {
       setError('Failed to sign up');
       console.error('Error signing up:', error);
@@ -47,80 +47,36 @@ const SignUp = () => {
   };
 
   return (
-    <React.Fragment>
-      <div>
-      <form className='max-w-md mx-auto mt-8 p-6 bg-white rounded shadow-md' onSubmit={handleSubmit}>
-        <h2 className='text-2xl font-bold mb-4 text-center'>Sign Up</h2>
-        <div className='mb-4 flex items-center'>
-          <label className='block text-gray-700 w-1/3'>Username:</label>
-          <input
-            id="Usr_name"
-            className='w-2/3 px-3 py-2 border rounded'
-            type="text"
-            name="Usr_name"
-            value={formState.Usr_name}
-            onChange={handleChange}
-          />
-        </div>
-        <div className='mb-4 flex items-center'>
-          <label className='block text-gray-700 w-1/3'>Email:</label>
-          <input
-            id="Usr_email"
-            className='w-2/3 px-3 py-2 border rounded'
-            type="email"
-            name="Usr_email"
-            value={formState.Usr_email}
-            onChange={handleChange}
-          />
-        </div>
-        <div className='mb-4 flex items-center'>
-          <label className='block text-gray-700 w-1/3'>Phone:</label>
-          <input
-            id="Usr_phone"
-            className='w-2/3 px-3 py-2 border rounded'
-            type="text"
-            name="Usr_phone"
-            value={formState.Usr_phone}
-            onChange={handleChange}
-          />
-        </div>
-        <div className='mb-4 flex items-center'>
-          <label className='block text-gray-700 w-1/3'>Address:</label>
-          <input
-            id="Usr_address"
-            className='w-2/3 px-3 py-2 border rounded'
-            type="text"
-            name="Usr_address"
-            value={formState.Usr_address}
-            onChange={handleChange}
-          />
-        </div>
-        <div className='mb-4 flex items-center'>
-          <label className='block text-gray-700 w-1/3'>Password:</label>
-          <input
-            id="Usr_pass"
-            className='w-2/3 px-3 py-2 border rounded'
-            type="password"
-            name="Usr_pass"
-            value={formState.Usr_pass}
-            onChange={handleChange}
-          />
-        </div>
-        <div className='mb-4 flex items-center'>
-          <label className='block text-gray-700 w-1/3'>Confirm Password:</label>
-          <input
-            id="confirmPassword"
-            className='w-2/3 px-3 py-2 border rounded'
-            type="password"
-            name="confirmPassword"
-            value={formState.confirmPassword}
-            onChange={handleChange}
-          />
-        </div>
-        <div className='mb-4 flex items-center'>
-          <label className='block text-gray-700 w-1/3'>Select Role:</label>
+    <div className="flex justify-center items-center min-h-screen bg-gray-100">
+      <form
+        className="max-w-md w-full p-6 bg-white rounded shadow-md"
+        onSubmit={handleSubmit}
+      >
+        <h2 className="text-2xl font-bold mb-4 text-center">Sign Up</h2>
+        {[
+          { label: 'Username', name: 'Usr_name', type: 'text' },
+          { label: 'Email', name: 'Usr_email', type: 'email' },
+          { label: 'Phone', name: 'Usr_phone', type: 'text' },
+          { label: 'Address', name: 'Usr_address', type: 'text' },
+          { label: 'Password', name: 'Usr_pass', type: 'password' },
+          { label: 'Confirm Password', name: 'confirmPassword', type: 'password' },
+        ].map(({ label, name, type }) => (
+          <div key={name} className="mb-4 flex items-center">
+            <label className="block text-gray-700 w-1/3">{label}:</label>
+            <input
+              id={name}
+              className="w-2/3 px-3 py-2 border rounded"
+              type={type}
+              name={name}
+              value={formState[name]}
+              onChange={handleChange}
+            />
+          </div>
+        ))}
+        <div className="mb-4 flex items-center">
+          <label className="block text-gray-700 w-1/3">Select Role:</label>
           <select
-            className='w-2/3 px-3 py-2 border rounded'
+            className="w-2/3 px-3 py-2 border rounded"
             name="role"
             value={formState.role}
             onChange={handleChange}
@@ -129,17 +85,22 @@ const SignUp = () => {
             <option value="farmer">Farmer</option>
             <option value="governmentOfficial">Government Official</option>
           </select>
-          {error && <p className='text-red-500 mt-2'>{error}</p>}
         </div>
-        <div className='text-center'>
-          <button className='w-full py-2 px-4 bg-blue-500 text-white rounded hover:bg-blue-600' type='submit'>Sign Up</button>
-          </div>
-      <div className="text-center mt-4">
-        Already have an account? <Link className="text-blue-500" to="/login">Login</Link>
-      </div>
+        {error && <p className="text-red-500 text-center mb-4">{error}</p>}
+        <button
+          className="w-full py-2 px-4 bg-blue-500 text-white rounded hover:bg-blue-600"
+          type="submit"
+        >
+          Sign Up
+        </button>
+        <div className="text-center mt-4">
+          Already have an account?{' '}
+          <Link className="text-blue-500" to="/login">
+            Login
+          </Link>
+        </div>
       </form>
-      </div>
-    </React.Fragment>
+    </div>
   );
 };
 

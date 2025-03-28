@@ -4,6 +4,7 @@ import { FaArrowRight, FaSort } from 'react-icons/fa6';
 import { Link } from 'react-router-dom';
 
 const DataView = () => {
+  const backendURL = import.meta.env.VITE_API_URL || 'http://localhost:4000';
   const [busStations, setBusStations] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [sortType, setSortType] = useState('');
@@ -14,7 +15,7 @@ const DataView = () => {
 
   const fetchBusStations = async () => {
     try {
-      const response = await axios.get('https://glis-yqvt.onrender.com/api/bus-stations');
+      const response = await axios.get(`${backendURL}/api/bus-stations`);
       setBusStations(response.data);
     } catch (error) {
       console.error('Error fetching bus stations:', error);

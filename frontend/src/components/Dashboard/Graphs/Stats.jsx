@@ -8,6 +8,7 @@ import './css/Stats.css';
 import loadingAnimation from '../../../assets/animations/loading.json'; // Import the loading animation
 
 const LargeSpace = () => {
+  const backendURL = import.meta.env.VITE_API_URL || 'http://localhost:4000';
   const [topRevenueData, setTopRevenueData] = useState([]);
   const [floodRiskScores, setFloodRiskScores] = useState([]);
   const [environmentalSafetyData, setEnvironmentalSafetyData] = useState([]);
@@ -21,9 +22,9 @@ const LargeSpace = () => {
     const fetchData = async () => {
       try {
         const [topRevenueResponse, floodRiskResponse, environmentalSafetyResponse] = await Promise.all([
-          axios.get('https://glis-yqvt.onrender.com/api/top-revenue'),
-          axios.get('https://glis-yqvt.onrender.com/api/flood-risk'),
-          axios.get('https://glis-yqvt.onrender.com/api/envi-safety')
+          axios.get(`${backendURL}/api/top-revenue`),
+          axios.get(`${backendURL}/api/flood-risk`),
+          axios.get(`${backendURL}/api/envi-safety`)
         ]);
         setTopRevenueData(topRevenueResponse.data);
         setFloodRiskScores(floodRiskResponse.data);

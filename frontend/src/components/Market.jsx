@@ -5,6 +5,8 @@ import { FaArrowRight } from 'react-icons/fa';
 import './css/Market.css';
 
 const Market = () => {
+  
+  const backendURL = import.meta.env.VITE_API_URL || 'http://localhost:4000';
   const [marketPlaces, setMarketPlaces] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -15,7 +17,7 @@ const Market = () => {
 
   const fetchMarketPlaces = async () => {
     try {
-      const response = await axios.get('https://glis-yqvt.onrender.com/api/bus-stations');
+      const response = await axios.get(`${backendURL}/api/bus-stations`);
       const placesWithMarket = response.data;
       const filteredPlaces = placesWithMarket.filter(place => place.MarketInfrastructure);
       console.log(filteredPlaces);

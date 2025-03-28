@@ -36,7 +36,7 @@ const ScatterPlot = ({ title }) => {
   };
 
   useEffect(() => {
-    axios.get('https://glis-yqvt.onrender.com/api/bus-stations')
+    axios.get('http://localhost:4000/api/bus-stations')
       .then(response => {
         const data = response.data;
         const maxFootTraffic = Math.max(...data.map(item => item.FootTraffic));

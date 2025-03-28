@@ -5,6 +5,7 @@ import Lottie from 'lottie-react';
 import loadingAnimation from '../../../assets/animations/loading.json'; // Import the loading animation
 
 const TreemapChart = () => {
+  const backendURL = import.meta.env.VITE_API_URL || 'http://localhost:4000';
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -12,7 +13,7 @@ const TreemapChart = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('https://glis-yqvt.onrender.com/api/bus-stations');
+        const response = await axios.get(`${backendURL}/api/bus-stations`);
         setData(response.data);
       } catch (error) {
         console.error('Error fetching data:', error);

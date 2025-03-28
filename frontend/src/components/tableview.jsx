@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'; // Import Lin
 import './css/tableview.css'
 
 const TableView = () => {
+  const backendURL = import.meta.env.VITE_API_URL || 'http://localhost:4000';
   const [busStations, setBusStations] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [sortType, setSortType] = useState('');
@@ -15,7 +16,7 @@ const TableView = () => {
 
   const fetchBusStations = async () => {
     try {
-      const response = await axios.get('https://glis-yqvt.onrender.com/api/bus-stations');
+      const response = await axios.get(`${backendURL}/api/bus-stations`);
       setBusStations(response.data);
     } catch (error) {
       console.error('Error fetching bus stations:', error);

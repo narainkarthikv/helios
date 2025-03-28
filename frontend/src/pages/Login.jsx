@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 const Login = ({ isAuthenticated, setIsAuthenticated }) => {
+  const backendURL = import.meta.env.VITE_API_URL || 'http://localhost:4000';
   const [email, setEmail] = useState('');
   const [pass, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -11,7 +12,7 @@ const Login = ({ isAuthenticated, setIsAuthenticated }) => {
     try {
       setIsSubmitting(true);
 
-      const response = await fetch('https://glis-yqvt.onrender.com/api/user/login', {
+      const response = await fetch(`${backendURL}/api/user/login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

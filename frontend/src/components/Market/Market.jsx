@@ -6,6 +6,7 @@ import Lottie from 'lottie-react';
 import loadingAnimation from '../../assets/animations/loading.json';
 
 const Market = () => {
+  const backendURL = import.meta.env.VITE_API_URL || 'http://localhost:4000';
   const [marketPlaces, setMarketPlaces] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -18,7 +19,7 @@ const Market = () => {
 
   const fetchMarketPlaces = async () => {
     try {
-      const response = await axios.get('https://glis-yqvt.onrender.com/api/bus-stations');
+      const response = await axios.get(`${backendURL}/api/bus-stations`);
       const placesWithMarket = response.data;
       const filteredMarkets = placesWithMarket.filter(place => place.MarketInfrastructure === 'true');
       setMarketPlaces(filteredMarkets);

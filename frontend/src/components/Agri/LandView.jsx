@@ -5,6 +5,7 @@ import loadingAnimation from '../../assets/animations/loading.json';
 import { FaTrash } from 'react-icons/fa';
 
 const Landview = () => {
+    const backendURL = import.meta.env.VITE_API_URL || 'http://localhost:4000';
     const [landData, setLandData] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -15,7 +16,7 @@ const Landview = () => {
 
     const fetchLandData = async () => {
         try {
-            const response = await axios.get("https://glis-yqvt.onrender.com/api/agri/fetch");
+            const response = await axios.get(`${backendURL}/api/agri/fetch`);
             setLandData(response.data);
         } catch (error) {
             setError(error.message);
@@ -27,7 +28,7 @@ const Landview = () => {
     const handleDelete = async (id) => {
         try {
             setLoading(true);
-            const response = await axios.delete(`https://glis-yqvt.onrender.com/api/agri/delete/${id}`);
+            const response = await axios.delete(`http://localhost:4000/api/agri/delete/${id}`);
             console.log(response.data);
             fetchLandData();
         } catch (error) {

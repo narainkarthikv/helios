@@ -4,6 +4,7 @@ import axios from 'axios';
 import './css/marketview.css';
 
 const MarketView = () => {
+  const backendURL = import.meta.env.VITE_API_URL || 'http://localhost:4000';
   const { id } = useParams();
   const [busStation, setBusStation] = useState({});
   const [marketData, setMarketData] = useState(null);
@@ -16,7 +17,7 @@ const MarketView = () => {
 
   const fetchBusStation = async (id) => {
     try {
-      const response = await axios.get(`https://glis-yqvt.onrender.com/api/bus-stations/${id}`);
+      const response = await axios.get(`${backendURL}/api/bus-stations/${id}`);
       setBusStation(response.data);
     } catch (error) {
       console.error('Error fetching bus station:', error);
@@ -25,7 +26,7 @@ const MarketView = () => {
 
   const fetchMarketData = async (id) => {
     try {
-      const response = await axios.get(`https://glis-yqvt.onrender.com/api/market/${id}`);
+      const response = await axios.get(`{backendURL}api/market/${id}`);
       setMarketData(response.data);
     } catch (error) {
       console.error('Error fetching market data:', error);
@@ -41,7 +42,7 @@ const MarketView = () => {
         Quantity: newCropData.Quantity,
     }
 
-    axios.post(`https://glis-yqvt.onrender.com/api/market/${id}/crops`, crop)
+    axios.post(`{backendURL}api/market/${id}/crops`, crop)
     .then(res => {
         console.log(res.data);
         setMarketData(res.data);
@@ -53,7 +54,7 @@ const MarketView = () => {
 };
 
   const deleteCrop = (cropId) => {
-    axios.delete(`https://glis-yqvt.onrender.com/api/market/${id}/crops/${cropId}`)
+    axios.delete(`{backendURL}api/market/${id}/crops/${cropId}`)
       .then(res => {
         console.log(res.data);
         fetchMarketData(id);

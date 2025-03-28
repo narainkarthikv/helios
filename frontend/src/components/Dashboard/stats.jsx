@@ -21,9 +21,9 @@ const LargeSpace = () => {
     const fetchData = async () => {
       try {
         const [topRevenueResponse, floodRiskResponse, environmentalSafetyResponse] = await Promise.all([
-          axios.get('https://glis-yqvt.onrender.com/api/top-revenue'),
-          axios.get('https://glis-yqvt.onrender.com/api/flood-risk'),
-          axios.get('https://glis-yqvt.onrender.com/api/envi-safety')
+          axios.get('http://localhost:4000/api/top-revenue'),
+          axios.get('http://localhost:4000/api/flood-risk'),
+          axios.get('http://localhost:4000/api/envi-safety')
         ]);
         setTopRevenueData(topRevenueResponse.data);
         setFloodRiskScores(floodRiskResponse.data);

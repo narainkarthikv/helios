@@ -5,7 +5,7 @@ import Lottie from 'lottie-react';
 import loadingAnimation from '../../../assets/animations/loading.json'; // Import the loading animation
 
 const LineChart = () => {
-
+  const backendURL = import.meta.env.VITE_API_URL || 'http://localhost:4000';
   const [chartData, setChartData] = useState({
     loading: true,
     error: null,
@@ -15,7 +15,7 @@ const LineChart = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('https://glis-yqvt.onrender.com/api/bus-stations');
+        const response = await axios.get(`${backendURL}/api/bus-stations`);
 
         setChartData({
           loading: false,

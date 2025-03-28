@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 
 const LandForm = ({ onSubmit }) => {
+    const backendURL = import.meta.env.VITE_API_URL || 'http://localhost:4000';
     const [formData, setFormData] = useState({
         ownerName: "",
         phoneNumber: "",
@@ -29,7 +30,7 @@ const LandForm = ({ onSubmit }) => {
         try {
             setIsSubmitting(true);
             // Make POST request to your backend API endpoint
-            const response = await axios.post("https://glis-yqvt.onrender.com/api/agri/add", formData);
+            const response = await axios.post(`${backendURL}/api/agri/add`, formData);
             console.log(response.data); // Log response from the server
             setFormData({
                 ownerName: "",

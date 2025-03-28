@@ -5,11 +5,12 @@ import Lottie from 'lottie-react';
 import loadingAnimation from '../../../assets/animations/loading.json';
 
 const BarChart = () => {
+  const backendURL = import.meta.env.VITE_API_URL || 'http://localhost:4000';
   const [barData, setBarData] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    axios.get('https://glis-yqvt.onrender.com/api/bus-stations')
+    axios.get(`${backendURL}/api/bus-stations`)
       .then(response => {
         const newData = response.data.map(item => ({
           x: item['Name'],

@@ -5,6 +5,7 @@ import Lottie from "lottie-react";
 import loadingAnimation from '../../../assets/animations/loading.json';
 
 const PieChart = () => {
+  const backendURL = import.meta.env.VITE_API_URL || 'http://localhost:4000';
   const [sizeData, setSizeData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -12,7 +13,7 @@ const PieChart = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('https://glis-yqvt.onrender.com/api/bus-stations');
+        const response = await axios.get(`${backendURL}/api/bus-stations`);
         const processedData = response.data.map(item => ({
           label: item.Name,
           value: item.Size

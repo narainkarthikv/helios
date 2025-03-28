@@ -5,6 +5,7 @@ import Lottie from 'lottie-react';
 import loadingAnimation from '../../assets/animations/loading.json';
 
 const Recordview = () => {
+  const backendURL = import.meta.env.VITE_API_URL || 'http://localhost:4000';
   const { id } = useParams();
   const [record, setRecord] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -16,7 +17,7 @@ const Recordview = () => {
 
   const fetchRecord = async (id) => {
     try {
-      const response = await axios.get(`https://glis-yqvt.onrender.com/api/bus-stations/${id}`);
+      const response = await axios.get(`${backendURL}/api/bus-stations/${id}`);
       setRecord(response.data);
     } catch (error) {
       console.error(error);

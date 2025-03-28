@@ -5,6 +5,7 @@ import { FaArrowRight, FaPlusCircle } from 'react-icons/fa';
 import Crop from './Crop';
 
 const MarketView = () => {
+  const backendURL = import.meta.env.VITE_API_URL || 'http://localhost:4000';
   const { id } = useParams();
   const [busStation, setBusStation] = useState({});
   const [marketData, setMarketData] = useState(null);
@@ -24,7 +25,7 @@ const MarketView = () => {
 
   const fetchBusStation = async (id) => {
     try {
-      const response = await axios.get(`https://glis-yqvt.onrender.com/api/bus-stations/${id}`);
+      const response = await axios.get(`${backendURL}/api/bus-stations/${id}`);
       setBusStation(response.data);
     } catch (error) {
       console.error('Error fetching bus station:', error);
@@ -33,7 +34,7 @@ const MarketView = () => {
 
   const fetchMarketData = async (id) => {
     try {
-      const response = await axios.get(`https://glis-yqvt.onrender.com/api/market/${id}`);
+      const response = await axios.get(`http://localhost:4000/api/market/${id}`);
       setMarketData(response.data);
       if (response.data && response.data.Crops) {
         const quantities = {};
@@ -49,7 +50,7 @@ const MarketView = () => {
 
   const updateCropQuantity = async (cropId, newQuantity) => {
     try {
-      await axios.put(`https://glis-yqvt.onrender.com/api/market/${id}/crops/${cropId}`, { Quantity: newQuantity });
+      await axios.put(`http://localhost:4000/api/market/${id}/crops/${cropId}`, { Quantity: newQuantity });
       fetchMarketData(id);
     } catch (error) {
       console.error('Error updating crop quantity:', error);
@@ -92,7 +93,7 @@ const MarketView = () => {
       Quantity: parseInt(newCropData.Quantity)
     };
   
-    axios.post(`https://glis-yqvt.onrender.com/api/market/${id}/crops`, crop)
+    axios.post(`http://localhost:4000/api/market/${id}/crops`, crop)
       .then(res => {
         const newCropId = res.data.Crops.find(c => c.Name === newCropData.Name)._id; // Find the ID of the newly added crop
         setMarketData(res.data);
@@ -116,7 +117,7 @@ const MarketView = () => {
   };
   
   const deleteCrop = (cropId) => {
-    axios.delete(`https://glis-yqvt.onrender.com/api/market/${id}/crops/${cropId}`)
+    axios.delete(`http://localhost:4000/api/market/${id}/crops/${cropId}`)
       .then(res => {
         console.log(res.data);
         fetchMarketData(id);

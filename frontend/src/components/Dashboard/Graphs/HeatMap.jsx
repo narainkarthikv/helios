@@ -5,13 +5,14 @@ import Lottie from 'lottie-react';
 import loadingAnimation from '../../../assets/animations/loading.json'; // Import your loading animation JSON file
 
 const HeatmapChart = () => {
+  const backendURL = import.meta.env.VITE_API_URL || 'http://localhost:4000';
   const [heatmapData, setHeatmapData] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('https://glis-yqvt.onrender.com/api/bus-stations');
+        const response = await axios.get(`${backendURL}/api/bus-stations`);
         const data = response.data;
         const heatmapChartData = data.map(item => ({
           x: item.PopulationDensity,
