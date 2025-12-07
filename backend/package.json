@@ -1,9 +1,11 @@
 {
-  "name": "glis",
+  "name": "glis-backend",
   "version": "1.0.0",
-  "description": "",
-  "main": "nodemon server.js",
+  "description": "GLIS Backend - Geospatial Land Information System API",
+  "main": "server.js",
   "scripts": {
+    "dev": "nodemon server.js",
+    "start": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
