@@ -1,0 +1,34 @@
+[project]
+name = "helios"
+version = "0.1.0"
+description = "Privacy-first Linux voice assistant with optional SaaS control plane"
+requires-python = ">=3.11"
+readme = "README.md"
+license = { text = "MIT" }
+authors = [{ name = "Helios Maintainers" }]
+
+[tool.uv.workspace]
+members = [
+  "apps/linux-agent",
+  "packages/helios-core",
+  "services/control-plane",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "RUF"]
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = [
+  "packages/helios-core/src",
+  "apps/linux-agent/src",
+  "services/control-plane/src",
+]

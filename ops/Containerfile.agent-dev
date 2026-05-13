@@ -1,0 +1,9 @@
+FROM python:3.12-slim
+
+WORKDIR /app
+ENV PYTHONPATH=/app/packages/helios-core/src:/app/apps/linux-agent/src
+
+COPY packages/helios-core /app/packages/helios-core
+COPY apps/linux-agent /app/apps/linux-agent
+
+CMD ["python", "-m", "helios_agent.cli", "system status"]

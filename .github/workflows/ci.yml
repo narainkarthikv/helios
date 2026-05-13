@@ -1,0 +1,27 @@
+name: CI
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Run fast unit tests
+        run: |
+          PYTHONPATH=packages/helios-core/src:apps/linux-agent/src:services/control-plane/src \
+            python -m unittest discover -s tests
+
+      - name: Enforce product structure
+        run: |
+          test ! -d frontend
+          test ! -d backend
+          sh scripts/check_structure.sh

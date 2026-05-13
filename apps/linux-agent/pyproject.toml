@@ -1,0 +1,16 @@
+[project]
+name = "helios-linux-agent"
+version = "0.1.0"
+description = "Local Linux runtime for Helios"
+requires-python = ">=3.11"
+dependencies = ["helios-core"]
+
+[project.scripts]
+helios = "helios_agent.cli:main"
+
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
